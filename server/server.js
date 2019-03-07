@@ -46,25 +46,25 @@ app.get(`/tasks`, (req, res) => {
   );
 });
 
-// app.get(`/epigrams/:id`, (req, res) => {
-//   const id = req.params.id;
-//   if (!ObjectID.isValid(id)) {
-//     return res.status(400).send({
-//       message: "id is not valid"
-//     });
-//   }
-//   Epigram.findById(id).then(epigram => {
-//     if (epigram) {
-//       res.send({
-//         epigram
-//       });
-//     } else {
-//       res.status(404).send({
-//         message: "Document with that id was not found"
-//       });
-//     }
-//   });
-// });
+app.get(`/tasks/:id`, (req, res) => {
+  const id = req.params.id;
+  if (!ObjectID.isValid(id)) {
+    return res.status(400).send({
+      message: "id is not valid"
+    });
+  }
+  Tasks.findById(id).then(task => {
+    if (task) {
+      res.send({
+        task
+      });
+    } else {
+      res.status(404).send({
+        message: "Document with that id was not found"
+      });
+    }
+  });
+});
 
 // app.delete(`/epigrams/:id`, (req, res) => {
 //   let id = req.params.id;
